@@ -3,7 +3,6 @@ package cucumber.steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.it.Ma;
 import mystore.AddNewAdressPage;
 import mystore.MainPageMyStore;
 import mystore.MyAccountPage;
@@ -15,7 +14,7 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
-public class MyStoreSteps {
+public class AddingXUsersSteps {
     private WebDriver webDriver;
 
             @Given("An open browser with user registration page")
