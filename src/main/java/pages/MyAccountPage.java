@@ -1,4 +1,4 @@
-package mystore;
+package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 public class MyAccountPage {
     @FindBy(className = "logout")
     private WebElement logOutButton;
+    @FindBy(xpath = "//*[@id=\"address-link\"]")
+    private WebElement addFirstAddressButton;
     private WebDriver webDriver;
     public MyAccountPage(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
@@ -15,5 +17,8 @@ public class MyAccountPage {
     }
     public void signOut () {
         logOutButton.click();
+    }
+    public void addFirstAddressButton() {
+        addFirstAddressButton.click();
     }
 }

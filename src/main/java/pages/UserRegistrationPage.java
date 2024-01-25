@@ -1,4 +1,4 @@
-package mystore;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -30,6 +30,8 @@ public class UserRegistrationPage {
     private WebDriver webDriver;
     static String firstName;
     static String lastName;
+    public static String email;
+    public static String password;
     public static String getFirstName () {
         firstName = UserDataGenerator.getFirstName();
         return firstName;
@@ -37,6 +39,14 @@ public class UserRegistrationPage {
     public static String getLastName () {
         lastName = UserDataGenerator.getLastName();
         return lastName;
+    }
+    public static String getEmail () {
+        email = UserDataGenerator.getEmail();
+        return email;
+    }
+    public static String getPassword () {
+        password = UserDataGenerator.getPassword();
+        return password;
     }
     public static String fullName;
 
@@ -50,13 +60,13 @@ public class UserRegistrationPage {
         firstNameField.sendKeys(firstName);
         lastName = getLastName();
         lastNameField.sendKeys(lastName);
-        String email = UserDataGenerator.getEmail();
-        emailField.sendKeys(/*"15811@mejl.com"*/email);//test email for testing repeated email error
-        String password = UserDataGenerator.getPassword();
+        email = getEmail();
+        emailField.sendKeys(email);//test email for testing repeated email error
+        password = getPassword();
         passwordField.sendKeys(password);
         customerPrivacyCheckBox.click();
         termsAcceptanceCheckBox.click();
-        Thread.sleep(2000);//zatrzymuje działanie programu na określonąilość czasu
+        Thread.sleep(2000);//zatrzymuje działanie programu na określoną ilość czasu
         submitFormField.click();
         try {//finding error message with exception handling
             WebElement emailDanger = webDriver.findElement(By.className("alert-danger"));

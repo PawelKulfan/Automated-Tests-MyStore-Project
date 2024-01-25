@@ -1,4 +1,4 @@
-package mystore;
+package pages;
 
 import java.util.Random;
 

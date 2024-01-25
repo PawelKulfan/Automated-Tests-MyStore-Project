@@ -3,12 +3,12 @@ package cucumber.steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import mystore.AddNewAdressPage;
-import mystore.MainPageMyStore;
-import mystore.MyAccountPage;
-import mystore.UserRegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.AddNewAdressPage;
+import pages.MainPageMyStore;
+import pages.MyAccountPage;
+import pages.UserRegistrationPage;
 
 import java.time.Duration;
 
@@ -33,7 +33,7 @@ public class AddingXUsersSteps {
                     assertEquals(UserRegistrationPage.fullName, mainPageMyStore.getCustomerNameMainPage());//Assertions gets customer full name from main page header after creating account and compares to generated user full name
                     this.webDriver.get("https://mystore-testlab.coderslab.pl/index.php?controller=address");
                     AddNewAdressPage addNewAdressPage = new AddNewAdressPage(this.webDriver);
-                    addNewAdressPage.addingAdress();
+                    addNewAdressPage.addingAdressFromRandomGenerator();
                     this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                     MyAccountPage myAccountPage = new MyAccountPage(this.webDriver);
                     myAccountPage.signOut();
