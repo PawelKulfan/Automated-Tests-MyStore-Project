@@ -12,6 +12,8 @@ public class MainPageMyStore {
     private WebElement signOutText;
     @FindBy(xpath = "//*[@id=\"_desktop_user_info\"]/div/a[2]/span")
     private WebElement customerNameMainPage;
+    @FindBy(xpath = "//*[@id=\"category-3\"]/a")
+    private WebElement clothesButton;
     private WebDriver webDriver;
     public MainPageMyStore(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
@@ -19,5 +21,10 @@ public class MainPageMyStore {
     }
     public String getCustomerNameMainPage() {
         return customerNameMainPage.getText();
+    }
+    public void goToClothesPage () throws InterruptedException {
+        Thread.sleep(1500);
+        clothesButton.click();
+
     }
 }

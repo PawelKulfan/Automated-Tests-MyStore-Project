@@ -13,15 +13,16 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
-public class Exercise1Steps {
+public class AddingAddressSteps {
     private WebDriver webDriver;
-    @Given("An open browser with user login page")
+    @Given("An open browser with new user created")
     public void openLoginPage() throws InterruptedException {
         this.webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
         this.webDriver.get("https://prod-kurs.coderslab.pl/index.php?controller=authentication&create_account=1");
         UserRegistrationPage userRegistrationPage = new UserRegistrationPage(this.webDriver);
         userRegistrationPage.userRegistration();
-        MyAccountPage myAccountPage = new MyAccountPage(this.webDriver);
+        CustomerAccountPage myAccountPage = new CustomerAccountPage(this.webDriver);
         myAccountPage.signOut();
         this.webDriver.get("https://mystore-testlab.coderslab.pl/index.php?controller=authentication&back=my-account");
         this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
@@ -31,7 +32,7 @@ public class Exercise1Steps {
     public void logInUserAndAddAddress (String alias, String address, String city, String zip, String phone) throws InterruptedException {
         UserLoginPage userLoginPage = new UserLoginPage(this.webDriver);
         userLoginPage.logIn(UserRegistrationPage.email, UserRegistrationPage.password);
-        MyAccountPage myAccountPage = new MyAccountPage(this.webDriver);
+        CustomerAccountPage myAccountPage = new CustomerAccountPage(this.webDriver);
         myAccountPage.addFirstAddressButton();
         AddNewAdressPage addNewAdressPage = new AddNewAdressPage(this.webDriver);
         addNewAdressPage.addingAddressFromScenario(alias, address, city, zip, phone);
@@ -44,14 +45,25 @@ public class Exercise1Steps {
         assertEquals(zip, customerAddressesPage.getAddedZip());
         assertEquals(phone, customerAddressesPage.getAddedPhone());
     }
-    @And("User deletes address")
-    public void deleteAddress () {
+    //IN THIS VERSION, THERE IS ONLY ONE ADDRESS IN CUSTOMER ACCOUNT
+//    @And("User address deletion")
+//    public void deleteAddress () throws InterruptedException {
+//        CustomerAddressesPage customerAddressesPage = new CustomerAddressesPage(this.webDriver);
+//        customerAddressesPage.deleteAddress();
+//        this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+//    }
+    //IN THIS VERSION, ANOTHER ADDRESS IS ADDED TO CUSTOMER ACCOUNT
+    @And("User address deletion")
+    public void deleteAddress () throws InterruptedException {
         CustomerAddressesPage customerAddressesPage = new CustomerAddressesPage(this.webDriver);
+        customerAddressesPage.addAnotherAddress();
+        AddNewAdressPage addNewAdressPage = new AddNewAdressPage(this.webDriver);
+        addNewAdressPage.addingAdressFromRandomGenerator();
         customerAddressesPage.deleteAddress();
         this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 //    IN THIS VERSION, ASSERTION ERROR IS HANDLED, SO ASSERTION WILL ALWAYS BE TRUE, SCRIPT PRINTS OPERATION STATUS (DELETED OR NOT DELETED) WITH EXCEPTION MESSAGE
-    @And("No address in user addresses panel")
+    @And("Address deleted from user addresses")
     public void isAddressDeleted () throws ComparisonFailure {
         CustomerAddressesPage customerAddressesPage = new CustomerAddressesPage(this.webDriver);
         String assertionResultMessage = null;

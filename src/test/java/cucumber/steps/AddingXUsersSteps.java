@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.AddNewAdressPage;
 import pages.MainPageMyStore;
-import pages.MyAccountPage;
+import pages.CustomerAccountPage;
 import pages.UserRegistrationPage;
 
 import java.time.Duration;
@@ -35,7 +35,7 @@ public class AddingXUsersSteps {
                     AddNewAdressPage addNewAdressPage = new AddNewAdressPage(this.webDriver);
                     addNewAdressPage.addingAdressFromRandomGenerator();
                     this.webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-                    MyAccountPage myAccountPage = new MyAccountPage(this.webDriver);
+                    CustomerAccountPage myAccountPage = new CustomerAccountPage(this.webDriver);
                     myAccountPage.signOut();
                 }
             }

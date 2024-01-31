@@ -66,8 +66,9 @@ public class UserRegistrationPage {
         passwordField.sendKeys(password);
         customerPrivacyCheckBox.click();
         termsAcceptanceCheckBox.click();
-        Thread.sleep(2000);//zatrzymuje działanie programu na określoną ilość czasu
+        Thread.sleep(3000);//zatrzymuje działanie programu na określoną ilość czasu
         submitFormField.click();
+        Thread.sleep(1500);
         try {//finding error message with exception handling
             WebElement emailDanger = webDriver.findElement(By.className("alert-danger"));
             if (emailDanger.isDisplayed()) {//error message displayed checker
@@ -77,7 +78,7 @@ public class UserRegistrationPage {
                 emailField.clear();//clearing field from previous email
                 emailField.sendKeys(backupEmail);
                 passwordField.sendKeys(String.valueOf(backupRandomNumber));
-                Thread.sleep(2000);//zatrzymuje działanie programu na określonąilość czasu
+                Thread.sleep(3000);//zatrzymuje działanie programu na określonąilość czasu
                 submitFormField.click();
                 email = backupEmail;
             }

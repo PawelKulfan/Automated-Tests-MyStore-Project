@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class CustomerAddressesPage {
@@ -15,12 +16,15 @@ public class CustomerAddressesPage {
     private String[] addressArray;
     @FindBy(className = "address")
     private WebElement currentAddressId;
-    @FindBy(xpath = "//a[@data-link-action='delete-address']")
+    @FindBy(xpath = "/html/body/main/section/div/div/section/section/div[2]/article/div[2]/a[2]")
     private WebElement deleteAddressButton;
     @FindBy(xpath = "//*[@id=\"notifications\"]/div/article/ul/li")
     private WebElement successfulAddressDeletionMessage;
+    @FindBy(xpath = "//a[@data-link-action='add-address']")
+    private WebElement addAddressButton;
 
     private WebDriver webDriver;
+    public static List<WebElement> addeddAddressesIdList;
 
     public CustomerAddressesPage(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
@@ -44,13 +48,21 @@ public class CustomerAddressesPage {
     public String getAddedPhone() {
         return addressArray[5];
     }
-    public void deleteAddress () {
+    public void deleteAddress () throws InterruptedException {
+        Thread.sleep(2000);
         deleteAddressButton.click();
+        Thread.sleep(2000);
     }
-//    public boolean successfulAddressDeletion() throws NoSuchElementException {
-//        return successfulAddressDeletionMessage.isDisplayed();
-//    }
+
     public String getSuccesfullAddressDeletionMessage () throws NoSuchElementException {
         return successfulAddressDeletionMessage.getText();
     }
+    public void addAnotherAddress () throws InterruptedException {
+        addAddressButton.click();
+        Thread.sleep(2000);
+    }
+//    public List<WebElement> getAddedAddressesId() {
+//       this.webDriver.findElements(By.className("address")).getAttribute("");
+//       return addeddAddressesIdList;
+//    }addeddAddressesIdList =
 }

@@ -18,9 +18,10 @@ public class UserLoginPage {
         PageFactory.initElements(webDriver, this);
         this.webDriver = webDriver;
     }
-    public void logIn (String email, String password) {
+    public void logIn (String email, String password) throws InterruptedException {
         loginUserEmailField.sendKeys(email);
         loginUserPasswordField.sendKeys(password);
+        Thread.sleep(3000);
         logInButton.click();
     }
 }
