@@ -12,4 +12,4 @@ Test scenarios were:
 Tech stack:
 Java 20
 Selenium + Cucumber
-Junit + PageFactory
+Junit + PageFactory + Gherkin
